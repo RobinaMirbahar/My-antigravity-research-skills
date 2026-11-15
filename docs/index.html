@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Antigravity Interactive Paper Studio — Gemma 4 LoopBreaker Simulator</title>
+<style>
+  :root {
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --ink: #0f172a;
+    --muted: #475569;
+    --border: #cbd5e1;
+    --blue: #1d4ed8;
+    --teal: #0f766e;
+    --green: #15803d;
+    --rose: #be123c;
+    --amber: #b45309;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'Segoe UI', Inter, system-ui, sans-serif; background: var(--bg); color: var(--ink); }
+  header { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 60%, #0f766e 100%); color: #fff; padding: 22px 32px; }
+  header .tag { font-size: 12px; text-transform: uppercase; letter-spacing: 1.4px; color: #99f6e4; font-weight: 700; }
+  header h1 { margin: 6px 0 6px; font-size: 22px; }
+  header p { margin: 0; color: #cbd5e1; font-size: 14px; max-width: 960px; }
+  .wrap { max-width: 1280px; margin: 20px auto; padding: 0 20px; display: grid; grid-template-columns: 360px 1fr; gap: 20px; }
+  @media (max-width: 960px) { .wrap { grid-template-columns: 1fr; } }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; box-shadow: 0 2px 8px rgba(15,23,42,0.04); }
+  .card h2 { margin: 0 0 12px; font-size: 16px; color: var(--ink); border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; }
+  .ctrl { margin-bottom: 15px; }
+  .ctrl label { display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; margin-bottom: 5px; }
+  .ctrl input[type="range"] { width: 100%; accent-color: var(--blue); }
+  .presets { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+  .btn { border: 1px solid var(--border); background: #f1f5f9; color: var(--ink); padding: 7px 11px; border-radius: 7px; font-size: 12px; font-weight: 700; cursor: pointer; }
+  .btn.primary { background: var(--blue); color: #fff; border-color: var(--blue); }
+  .btn.success { background: var(--green); color: #fff; border-color: var(--green); }
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+  @media (max-width: 720px) { .kpis { grid-template-columns: repeat(2, 1fr); } }
+  .kpi { background: #f8fafc; border: 1px solid var(--border); border-radius: 10px; padding: 11px 13px; }
+  .kpi .lbl { font-size: 11px; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+  .kpi .val { font-size: 21px; font-weight: 800; margin-top: 3px; }
+  .kpi .sub { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+  .charts { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 720px) { .charts { grid-template-columns: 1fr; } }
+  canvas { width: 100%; height: 250px; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; }
+  .status-banner { margin-top: 14px; padding: 12px 15px; border-radius: 9px; font-size: 13.5px; font-weight: 600; }
+  .ok { background: #ecfdf5; border: 1px solid #86efac; color: #065f46; }
+  .warn { background: #fff1f2; border: 1px solid #fda4af; color: #9f1239; }
+  footer { max-width: 1280px; margin: 12px auto 32px; padding: 0 20px; font-size: 12.5px; color: var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <div class="tag">Google Antigravity Research Kit · agy-interactive-paper-studio</div>
+  <h1>Interactive Paper Studio: W4A16 Softmax Dilution &amp; LoopBreakerEngine Simulator</h1>
+  <p>Drag the live telemetry sliders below to explore how accumulated <code>pytest</code> tracebacks dilute self-attention (Proposition 1), how temperature scales W4A16 logit rounding noise (Law 1), and when Graph-Guided Counterfactual Context Reset (G-CCR) fires.</p>
+</header>
+
+<div class="wrap">
+  <div class="card">
+    <h2>1. Live Telemetry Controls</h2>
+    <div class="presets">
+      <button class="btn" onclick="setPreset(0.20, 18000, 0.42, false)">M0 Unpruned Greedy</button>
+      <button class="btn primary" onclick="setPreset(1.00, 11200, 0.78, false)">Stage-1 Calibrated</button>
+      <button class="btn success" onclick="setPreset(1.00, 450, 1.85, true)">M6 + G-CCR Optimal</button>
+    </div>
+
+    <div class="ctrl">
+      <label><span>W4A16 Sampling Temp (&tau;)</span><span id="lblTau">1.00</span></label>
+      <input type="range" id="slTau" min="0.15" max="1.25" step="0.05" value="1.00" oninput="updateSim()" />
+    </div>
+
+    <div class="ctrl">
+      <label><span>Accumulated Traceback Tokens |B<sub>t</sub>|</span><span id="lblBt">450</span></label>
+      <input type="range" id="slBt" min="0" max="22000" step="150" value="450" oninput="updateSim()" />
+    </div>
+
+    <div class="ctrl">
+      <label><span>4-Turn Action Entropy H<sub>W</sub> (bits)</span><span id="lblHw">1.85</span></label>
+      <input type="range" id="slHw" min="0.10" max="2.00" step="0.05" value="1.85" oninput="updateSim()" />
+    </div>
+
+    <div class="ctrl">
+      <label><span>Enable G-CCR Auto-Prune (&minus;70.8% KV)</span><input type="checkbox" id="chkCcr" checked onchange="updateSim()" /></label>
+    </div>
+
+    <div style="font-size:12.5px;color:#475569;line-height:1.5;background:#f8fafc;padding:10px;border-radius:8px;border:1px solid #e2e8f0;">
+      <b>Published Ground-Truth Anchors:</b><br/>
+      • Stage-1 Greedy (&tau;=0.2): <b>17.8%</b> (23/129)<br/>
+      • Stage-1 Calibrated (&tau;=1.0): <b>39.5%</b> (51/129)<br/>
+      • End-to-End M0 &rarr; M6: <b>11.6% &rarr; 24.0%</b><br/>
+      • Trap-25 Escape: <b>16.0% &rarr; 96.0%</b> (p = 4.2e-9)
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>2. Real-Time Mathematical &amp; Trajectory Readout</h2>
+    <div class="kpis">
+      <div class="kpi">
+        <div class="lbl">Softmax Dilution</div>
+        <div class="val" id="kpiDil">0.06</div>
+        <div class="sub">Share lost to B<sub>t</sub></div>
+      </div>
+      <div class="kpi">
+        <div class="lbl">W4A16 Noise (&sigma;<sub>q</sub>/&tau;)</div>
+        <div class="val" id="kpiNoise">0.18</div>
+        <div class="sub">Logit rounding bias</div>
+      </div>
+      <div class="kpi">
+        <div class="lbl">Compaction Cliff</div>
+        <div class="val" id="kpiCliff">SAFE</div>
+        <div class="sub">14,336-tok threshold</div>
+      </div>
+      <div class="kpi">
+        <div class="lbl">LoopBreaker State</div>
+        <div class="val" id="kpiState">CLEAN</div>
+        <div class="sub">H<sub>W</sub> &lt; 0.55 trigger</div>
+      </div>
+    </div>
+
+    <div class="charts">
+      <canvas id="cvDilution" width="520" height="250"></canvas>
+      <canvas id="cvTemp" width="520" height="250"></canvas>
+    </div>
+
+    <div id="banner" class="status-banner ok"></div>
+  </div>
+</div>
+
+<footer>
+  Built with <b>RobinaMirbahar/My-antigravity-research-skills</b> (<code>agy-interactive-paper-studio</code>) · Zero external dependencies · Exact closed-form model equations verified via PEP 723 <code>uv run</code>.
+</footer>
+
+<script>
+function setPreset(tau, bt, hw, ccr) {
+  document.getElementById('slTau').value = tau;
+  document.getElementById('slBt').value = bt;
+  document.getElementById('slHw').value = hw;
+  document.getElementById('chkCcr').checked = ccr;
+  updateSim();
+}
+
+function drawDilutionChart(btCur) {
+  const c = document.getElementById('cvDilution');
+  const ctx = c.getContext('2d');
+  const W = c.width, H = c.height;
+  ctx.clearRect(0, 0, W, H);
+  const padL = 46, padR = 18, padT = 28, padB = 34;
+  const pw = W - padL - padR, ph = H - padT - padB;
+
+  // Cliff zone > 14,336
+  const xCliff = padL + (14336 / 22000) * pw;
+  ctx.fillStyle = 'rgba(254, 205, 211, 0.45)';
+  ctx.fillRect(xCliff, padT, padL + pw - xCliff, ph);
+
+  ctx.strokeStyle = '#cbd5e1'; ctx.lineWidth = 1;
+  ctx.strokeRect(padL, padT, pw, ph);
+
+  ctx.fillStyle = '#0f172a'; ctx.font = 'bold 12px Segoe UI, sans-serif';
+  ctx.fillText('Prop. 1: Softmax Dilution vs. Traceback Tokens |B_t|', padL, 18);
+
+  // Curve
+  ctx.beginPath();
+  for (let i = 0; i <= 100; i++) {
+    const b = (i / 100) * 22000;
+    const dil = (0.00173 * b) / (12.0 + 0.00173 * b);
+    const x = padL + (b / 22000) * pw;
+    const y = padT + ph - dil * ph;
+    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  }
+  ctx.strokeStyle = '#1d4ed8'; ctx.lineWidth = 2.6; ctx.stroke();
+
+  // Current marker
+  const dilCur = (0.00173 * btCur) / (12.0 + 0.00173 * btCur);
+  const cx = padL + (btCur / 22000) * pw;
+  const cy = padT + ph - dilCur * ph;
+  ctx.beginPath(); ctx.arc(cx, cy, 6, 0, Math.PI * 2);
+  ctx.fillStyle = btCur > 14336 ? '#be123c' : '#15803d'; ctx.fill();
+
+  ctx.fillStyle = '#475569'; ctx.font = '11px Segoe UI, sans-serif';
+  ctx.fillText('0k', padL, H - 12);
+  ctx.fillText('14.3k Cliff', xCliff - 22, H - 12);
+  ctx.fillText('22k', padL + pw - 20, H - 12);
+}
+
+function drawTempChart(tauCur) {
+  const c = document.getElementById('cvTemp');
+  const ctx = c.getContext('2d');
+  const W = c.width, H = c.height;
+  ctx.clearRect(0, 0, W, H);
+  const padL = 46, padR = 18, padT = 28, padB = 34;
+  const pw = W - padL - padR, ph = H - padT - padB;
+
+  ctx.strokeStyle = '#cbd5e1'; ctx.lineWidth = 1;
+  ctx.strokeRect(padL, padT, pw, ph);
+
+  ctx.fillStyle = '#0f172a'; ctx.font = 'bold 12px Segoe UI, sans-serif';
+  ctx.fillText('Law 1: W4A16 Rounding Magnification (sigma_q / tau)', padL, 18);
+
+  ctx.beginPath();
+  for (let i = 0; i <= 100; i++) {
+    const t = 0.15 + (i / 100) * 1.10;
+    const val = (0.18 / t) / 1.30;
+    const x = padL + ((t - 0.15) / 1.10) * pw;
+    const y = padT + ph - Math.min(val, 1.0) * ph;
+    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  }
+  ctx.strokeStyle = '#0f766e'; ctx.lineWidth = 2.6; ctx.stroke();
+
+  const vCur = (0.18 / tauCur) / 1.30;
+  const cx = padL + ((tauCur - 0.15) / 1.10) * pw;
+  const cy = padT + ph - Math.min(vCur, 1.0) * ph;
+  ctx.beginPath(); ctx.arc(cx, cy, 6, 0, Math.PI * 2);
+  ctx.fillStyle = tauCur < 0.5 ? '#be123c' : '#15803d'; ctx.fill();
+
+  ctx.fillStyle = '#475569'; ctx.font = '11px Segoe UI, sans-serif';
+  ctx.fillText('0.15 (Greedy)', padL, H - 12);
+  ctx.fillText('1.00 (Calibrated)', padL + ((1.0 - 0.15) / 1.10) * pw - 36, H - 12);
+}
+
+function updateSim() {
+  const tau = parseFloat(document.getElementById('slTau').value);
+  let bt = parseFloat(document.getElementById('slBt').value);
+  const hw = parseFloat(document.getElementById('slHw').value);
+  const ccr = document.getElementById('chkCcr').checked;
+
+  const loopDetected = hw < 0.55 || bt > 14336;
+  const effBt = (ccr && loopDetected) ? 450 : bt;
+  const dil = (0.00173 * effBt) / (12.0 + 0.00173 * effBt);
+  const noise = 0.18 / tau;
+
+  document.getElementById('lblTau').textContent = tau.toFixed(2);
+  document.getElementById('lblBt').textContent = bt.toLocaleString() + (effBt !== bt ? ' -> 450 (Pruned!)' : '');
+  document.getElementById('lblHw').textContent = hw.toFixed(2);
+
+  document.getElementById('kpiDil').textContent = dil.toFixed(2);
+  document.getElementById('kpiNoise').textContent = noise.toFixed(2);
+  document.getElementById('kpiCliff').textContent = effBt > 14336 ? 'BREACHED' : 'SAFE';
+  document.getElementById('kpiCliff').style.color = effBt > 14336 ? '#be123c' : '#15803d';
+  document.getElementById('kpiState').textContent = (ccr && loopDetected) ? 'G-CCR RESET' : (hw < 0.55 ? 'STUCK LOOP' : 'HEALTHY');
+  document.getElementById('kpiState').style.color = (!ccr && loopDetected) ? '#be123c' : '#0f766e';
+
+  drawDilutionChart(effBt);
+  drawTempChart(tau);
+
+  const banner = document.getElementById('banner');
+  if (!ccr && (effBt > 14336 || hw < 0.55 || tau < 0.4)) {
+    banner.className = 'status-banner warn';
+    banner.innerHTML = 'MINUTE-15 CLIFF WARNING: Softmax dilution (' + dil.toFixed(2) + ') or low-temperature W4A16 bias (' + noise.toFixed(2) + ') traps the agent in repetitive broken edits (16.0% Trap-25 escape). Enable G-CCR or click "M6 + G-CCR Optimal"!';
+  } else {
+    banner.className = 'status-banner ok';
+    banner.innerHTML = 'CALIBRATED REGIME ACTIVE: Effective dilution held at ' + dil.toFixed(2) + ' with W4A16 noise ' + noise.toFixed(2) + ' — matching LoopBreakerEngine\'s 96.0% Trap-25 escape rate (-70.8% post-reset KV cache).';
+  }
+}
+updateSim();
+</script>
+</body>
+</html>

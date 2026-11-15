@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+**/preview_*/
+**/*_preview/
+**/video_frame_*.png
+.DS_Store
+Thumbs.db

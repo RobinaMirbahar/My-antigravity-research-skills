@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "write_file",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run hooks/stdlib_shadow_guard.py"
+          }
+        ]
+      }
+    ]
+  }
+}

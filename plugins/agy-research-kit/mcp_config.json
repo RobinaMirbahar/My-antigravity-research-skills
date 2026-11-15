@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "agy_research_audit": {
+      "command": "uv",
+      "args": ["run", "mcp/research_audit_mcp.py"],
+      "timeoutSeconds": 60
+    }
+  }
+}

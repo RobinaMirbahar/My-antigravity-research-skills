@@ -1,0 +1,16 @@
+{
+  "dilution_unpruned": 0.722,
+  "dilution_gccr": 0.061,
+  "effective_bits_recovered": 4.56,
+  "w4a16_prob_std_tau02": 0.227,
+  "w4a16_prob_std_tau10": 0.041,
+  "entropy_diverse_bits": 2.0,
+  "entropy_stuck_bits": 0.529,
+  "trap25_fisher_p": 7.178606491749204e-09,
+  "stage1_rate_pct": 39.5,
+  "stage1_wilson_95_ci_pct": [
+    31.5,
+    48.2
+  ],
+  "kv_reduction_pct": 70.8
+}
