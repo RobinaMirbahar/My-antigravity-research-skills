@@ -107,3 +107,8 @@ uv run tests/test_skills_structure.py
 ## License
 
 Released under the [MIT License](LICENSE) · Authored by [Robina Mirbahar](https://github.com/RobinaMirbahar).
+
+---
+
+### Official Google Developer Resources
+- [Google Antigravity Documentation](https://antigravity.google/?utm_campaign=deveco_gdemembers&utm_source=deveco)
