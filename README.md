@@ -5,7 +5,8 @@
 ![Interactive_Studio](https://img.shields.io/badge/Interactive_HTML5-Paper_Simulator-7C3AED?style=for-the-badge)
 ![Author](https://img.shields.io/badge/Author-Robina_Mirbahar-EA4335?style=for-the-badge&logo=github&logoColor=white)
 
-> **Author & Architect:** [Robina Mirbahar](https://github.com/RobinaMirbahar) (Google Developer Expert in AI & Cloud)  
+> **Author & Architect:** [Robina Mirbahar](https://github.com/RobinaMirbahar) ([Google Developer Expert in Cloud & AI](https://developers.google.com/profile/u/106918534005910641104?utm_campaign=deveco_gdemembers&utm_source=deveco) · Google Cloud Champion Innovator · Co-Author of [*AI Engineering*](https://www.amazon.com/dp/B0GWCZWCF4))  
+> 📚 **Companion Publications:** [DEV.to (@gde) Featured Article](https://dev.to/gde/how-i-built-an-8-skill-research-engineering-plugin-stdio-mcp-server-vector-comic-studio-for-lfb) · [Medium (Google Cloud)](https://medium.com/google-cloud/how-i-built-an-8-skill-research-engineering-plugin-stdio-mcp-server-vector-comic-studio-with-b84afb4aac2a) · [Live 60-FPS Paper Studio](https://robinamirbahar.github.io/My-antigravity-research-skills/)  
 > **Focus:** Native Google Antigravity Research Skills (`SKILL.md`), Statistical & Crossref DOI MCP Server (`mcp_config.json`), Lifecycle Safety Hooks (`hooks.json`), and Interactive HTML5 Paper Studios (`docs/index.html`)
 
 ---
@@ -19,6 +20,42 @@ Reading, auditing, and communicating dense AI and systems research papers should
 This repository packages my **8-skill `agy-research-kit` plugin**, a **zero-setup PEP 723 Stdio MCP Server** for exact statistical & DOI verification, and a **live HTML5 Interactive Paper Simulator**:
 
 ![Google Antigravity Research Engineering Kit Architecture](assets/agy_research_kit_architecture.png)
+
+### 📐 Color-Coded Plugin & MCP Verification Flow
+> *(🩷 Pink = Antigravity Agent Trigger | 💙 Blue = 8 Progressive-Disclosure Skills | 💚 Green = Stdio MCP Audit Server & Live APIs | 💜 Purple = Verified A4 PDF, 1080p MP4 & 60-FPS HTML5 Artifacts)*
+
+```mermaid
+flowchart TD
+    subgraph Trigger ["1. Google Antigravity IDE / CLI (agy)"]
+        T_Input["Research Paper PDF / LaTeX / Benchmark Table"]
+        T_Hook["Pre/PostToolUse Safety Hook (stdlib_shadow_guard.py)"]
+    end
+    subgraph Skills ["2. Progressive-Disclosure Skills (~50 Tokens Idle -> uv run)"]
+        S_Audit["Statistical & Citation Auditors<br/>(ablation-stat-auditor · citation-doi-verifier)"]
+        S_Math["Math & Visual Forensics<br/>(math-sandbox · figure-forensics · frontier-gap-radar)"]
+        S_Studio["Interactive & Visual Storytelling<br/>(interactive-paper-studio · graphic-story · trajectory-cinematics)"]
+    end
+    subgraph MCP ["3. Deterministic Python JSON-RPC 2.0 Stdio MCP Server"]
+        M_Stat["Exact Wilson 95% CI, Fisher's Exact & Power Bounds"]
+        M_DOI["Live Crossref, OpenAlex & arXiv Venue Verifier"]
+    end
+    subgraph Out ["4. Provenance-Verified Research Deliverables"]
+        O_Art["60-FPS HTML5 Simulator · A4 Vector PDFs · 1080p H.264 MP4"]
+    end
+    T_Input --> T_Hook --> S_Audit & S_Math & S_Studio
+    S_Audit & S_Math --> M_Stat & M_DOI --> O_Art
+    S_Studio --> O_Art
+
+    style T_Input fill:#fce7f3,stroke:#db2777,stroke-width:2px,color:#831843
+    style T_Hook fill:#fce7f3,stroke:#db2777,stroke-width:2px,color:#831843
+    style S_Audit fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#1e3a8a
+    style S_Math fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#1e3a8a
+    style S_Studio fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#1e3a8a
+    style M_Stat fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d
+    style M_DOI fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d
+    style O_Art fill:#f3e8ff,stroke:#9333ea,stroke-width:2px,color:#581c87
+```
+
 
 ---
 
