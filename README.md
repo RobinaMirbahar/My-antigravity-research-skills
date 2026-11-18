@@ -21,9 +21,7 @@ This repository packages my **8-skill `agy-research-kit` plugin**, a **zero-setu
 
 ![Google Antigravity Research Engineering Kit Architecture](assets/agy_research_kit_architecture.png)
 
-### 📐 Color-Coded Plugin & MCP Verification Flow
-> *(🩷 Pink = Antigravity Agent Trigger | 💙 Blue = 8 Progressive-Disclosure Skills | 💚 Green = Stdio MCP Audit Server & Live APIs | 💜 Purple = Verified A4 PDF, 1080p MP4 & 60-FPS HTML5 Artifacts)*
-
+### 📐 Plugin & MCP Verification Flow
 ```mermaid
 flowchart TD
     subgraph Trigger ["1. Google Antigravity IDE / CLI (agy)"]
@@ -45,15 +43,6 @@ flowchart TD
     T_Input --> T_Hook --> S_Audit & S_Math & S_Studio
     S_Audit & S_Math --> M_Stat & M_DOI --> O_Art
     S_Studio --> O_Art
-
-    style T_Input fill:#fce7f3,stroke:#db2777,stroke-width:2px,color:#831843
-    style T_Hook fill:#fce7f3,stroke:#db2777,stroke-width:2px,color:#831843
-    style S_Audit fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#1e3a8a
-    style S_Math fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#1e3a8a
-    style S_Studio fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#1e3a8a
-    style M_Stat fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d
-    style M_DOI fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d
-    style O_Art fill:#f3e8ff,stroke:#9333ea,stroke-width:2px,color:#581c87
 ```
 
 
