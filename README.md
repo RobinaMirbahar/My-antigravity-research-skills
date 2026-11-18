@@ -7,7 +7,7 @@
 
 > **Author & Architect:** [Robina Mirbahar](https://github.com/RobinaMirbahar) ([Google Developer Expert in Cloud & AI](https://developers.google.com/profile/u/106918534005910641104?utm_campaign=deveco_gdemembers&utm_source=deveco) · Google Cloud Champion Innovator · Co-Author of [*AI Engineering*](https://www.amazon.com/dp/B0GWCZWCF4))  
 > 📚 **Companion Publications:** [DEV.to (@gde) Featured Article](https://dev.to/gde/how-i-built-an-8-skill-research-engineering-plugin-stdio-mcp-server-vector-comic-studio-for-lfb) · [Medium (Google Cloud)](https://medium.com/google-cloud/how-i-built-an-8-skill-research-engineering-plugin-stdio-mcp-server-vector-comic-studio-with-b84afb4aac2a) · [Live 60-FPS Paper Studio](https://robinamirbahar.github.io/My-antigravity-research-skills/)  
-> **Focus:** Native Google Antigravity Research Skills (`SKILL.md`), Statistical & Crossref DOI MCP Server (`mcp_config.json`), Lifecycle Safety Hooks (`hooks.json`), and Interactive HTML5 Paper Studios (`docs/index.html`)
+> **Core Stack:** [Google Antigravity](https://antigravity.google/?utm_campaign=deveco_gdemembers&utm_source=deveco) (SKILL.md, hooks.json, ules/AGENTS.md), Python JSON-RPC 2.0 Stdio MCP Server (erify_wilson_ci, erify_fisher_exact, erify_doi_metadata), PEP 723 (uv), and 60-FPS HTML5 Canvas.
 
 ---
 
