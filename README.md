@@ -3,11 +3,13 @@
 ![Antigravity_Plugin](https://img.shields.io/badge/Google_Antigravity-Plugin_&_8_Skills-4285F4?style=for-the-badge&logo=google&logoColor=white)
 ![MCP_Server](https://img.shields.io/badge/Stdio_MCP-Statistical_&_DOI_Audit-0F9D58?style=for-the-badge&logo=python&logoColor=white)
 ![Interactive_Studio](https://img.shields.io/badge/Interactive_HTML5-Paper_Simulator-7C3AED?style=for-the-badge)
+[![Claude_Code_Port](https://img.shields.io/badge/Sister_Repo_(Claude_Code)-xbill9%2Fclaude--research--skills-D97757?style=for-the-badge&logo=anthropic&logoColor=white)](https://github.com/xbill9/claude-research-skills)
 ![Author](https://img.shields.io/badge/Author-Robina_Mirbahar-EA4335?style=for-the-badge&logo=github&logoColor=white)
 
 > **Author & Architect:** [Robina Mirbahar](https://github.com/RobinaMirbahar) ([Google Developer Expert in Cloud & AI](https://developers.google.com/profile/u/106918534005910641104?utm_campaign=deveco_gdemembers&utm_source=deveco) · Google Cloud Champion Innovator · Co-Author of [*AI Engineering*](https://www.amazon.com/dp/B0GWCZWCF4))  
 > 📚 **Companion Publications:** [DEV.to (@gde) Featured Article](https://dev.to/gde/how-i-built-an-8-skill-research-engineering-plugin-stdio-mcp-server-vector-comic-studio-for-lfb) · [Medium (Google Cloud)](https://medium.com/google-cloud/how-i-built-an-8-skill-research-engineering-plugin-stdio-mcp-server-vector-comic-studio-with-b84afb4aac2a) · [Live 60-FPS Paper Studio](https://robinamirbahar.github.io/My-antigravity-research-skills/)  
-> **Core Stack:** [Google Antigravity](https://antigravity.google/?utm_campaign=deveco_gdemembers&utm_source=deveco) (SKILL.md, hooks.json, ules/AGENTS.md), Python JSON-RPC 2.0 Stdio MCP Server (erify_wilson_ci, erify_fisher_exact, erify_doi_metadata), PEP 723 (uv), and 60-FPS HTML5 Canvas.
+> **Core Stack:** [Google Antigravity](https://antigravity.google/?utm_campaign=deveco_gdemembers&utm_source=deveco) (`SKILL.md`, `hooks.json`, `rules/AGENTS.md`), Python JSON-RPC 2.0 Stdio MCP Server (`verify_wilson_ci`, `verify_fisher_exact`, `verify_doi_metadata`), PEP 723 (`uv`), and 60-FPS HTML5 Canvas.  
+> **Claude Code Sister Port:** Check out [`xbill9/claude-research-skills`](https://github.com/xbill9/claude-research-skills) by [@xbill9](https://github.com/xbill9) — brings the `research-kit` verification workflow to Claude Code with CI publishing gates!
 
 ---
 
@@ -127,6 +129,12 @@ Validate all 8 skill manifests, MCP JSON-RPC tool execution, hook guards, and ge
 ```bash
 uv run tests/test_skills_structure.py
 ```
+
+---
+
+## Ecosystem & Sister Repositories
+
+- **Claude Code Port (`claude-research-skills`)**: Ported and extended by [@xbill9](https://github.com/xbill9) at **[`xbill9/claude-research-skills`](https://github.com/xbill9/claude-research-skills)**, integrating the `research-kit` audit directly into a publishing pipeline where any disputed number or unverified claim fails the build until fixed or explained.
 
 ---
 
